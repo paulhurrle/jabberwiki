@@ -12,7 +12,7 @@ class WikisController < ApplicationController
   end
 
   def create
-      @wiki = Wiki.build(post_params)
+      @wiki = Wiki.new(post_params)
       @wiki.user = current_user
 
       if @wiki.save
@@ -56,6 +56,6 @@ class WikisController < ApplicationController
   private
 
   def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:wiki).permit(:title, :body, :private)
   end
 end

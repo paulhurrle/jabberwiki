@@ -11,12 +11,15 @@ users = User.all
 
 # Create Wikis
 25.times do
-	Wiki.create!(
+	wiki = Wiki.create!(
 		title: RandomData.random_sentence,
 		body:  RandomData.random_paragraph,
 		user:  users.sample,
 	)	
+
+	wiki.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
 end
+wikis = Wiki.all
 
 puts "Seed finished"
 puts "#{User.count} users created"
