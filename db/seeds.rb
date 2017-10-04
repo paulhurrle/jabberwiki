@@ -1,23 +1,27 @@
-require 'random_data'
+# require 'random_data'
+require 'faker'
+
+Faker::Name.unique.name       #=> "Christophe Bartell"
+Faker::Internet.email         #=> "kirsten.greenholt@corkeryfisher.info"
 
 # Create Users
-5.times do
+15.times do
 	User.create!(
-		email: RandomData.random_email,
-		password: RandomData.random_sentence,
+		email: Faker::Internet.email,
+		password: Faker::Internet.password,
 	)
 end
 users = User.all
 
 # Create Wikis
-25.times do
+50.times do
 	wiki = Wiki.create!(
-		title: RandomData.random_sentence,
-		body:  RandomData.random_paragraph,
+		title: Faker::Hacker.say_something_smart,
+		body:  Faker::Lorem.paragraph,
 		user:  users.sample,
 	)	
 
-	wiki.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
+	wiki.update_attribute(:created_at, Faker::Time.between(1.year.ago, Time.now, :all))
 end
 wikis = Wiki.all
 
