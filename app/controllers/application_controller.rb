@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized
-	flash[:alert] = "You are not allowed to update this wiki."
-	redirect_to @wiki
+  	flash[:alert] = "You are not allowed to update this wiki."
+  	redirect_to @wiki
   end
 end

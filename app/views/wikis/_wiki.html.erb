@@ -4,7 +4,7 @@
             <%= link_to wiki.title, wiki_path(wiki) %>
         </h4>
         <small>
-            submitted <%= time_ago_in_words(wiki.created_at) %> ago by <%= wiki.user.email %><br>
+            submitted <%= time_ago_in_words(wiki.created_at) %> ago by <%= wiki.user ? wiki.user.email : "Unknown user" %><br>
         </small>
     </div>
 </div>

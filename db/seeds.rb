@@ -8,7 +8,7 @@ Faker::Internet.email         #=> "kirsten.greenholt@corkeryfisher.info"
 15.times do
 	User.create!(
 		email: Faker::Internet.email,
-		password: Faker::Internet.password,
+		password: 'password',
 	)
 end
 users = User.all
