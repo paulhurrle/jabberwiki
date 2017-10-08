@@ -34,6 +34,9 @@ class ChargesController < ApplicationController
 
 	def destroy 
 		flash[:notice] = "#{current_user.email}, you now have a standard account."
+		current_user.wikis.each do |w|
+			w.private = false
+		end
 		current_user.standard!
 	end
 
