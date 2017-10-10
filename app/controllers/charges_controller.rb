@@ -24,6 +24,7 @@ class ChargesController < ApplicationController
 
 		flash[:notice] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
 		current_user.premium!
+		redirect_to wikis_path
 
 		# Stripe will send back CardErrors, with friendly messages when something goes wrong.
 		# This `rescue block` catches and displays those errors.
@@ -32,9 +33,13 @@ class ChargesController < ApplicationController
 			redirect_to new_charge_path
 	end
 
-	def destroy 
+	def downgrade 
 		flash[:notice] = "#{current_user.email}, you now have a standard account."
+		current_user.wikis.each do |w|
+			w.private = false
+		end
 		current_user.standard!
+		redirect_to :back
 	end
 
 end
