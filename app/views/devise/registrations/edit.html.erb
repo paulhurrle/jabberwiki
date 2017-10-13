@@ -38,7 +38,7 @@
 
 <% if current_user.standard? %>
   <h3>Upgrade my account</h3>
-    <p><%= button_to "Upgrade to premium account", charges_path %></p>
+    <p><%= button_to "Upgrade to premium account", new_charge_path %></p>
 <% end %>
 
 <% if current_user.premium? %>

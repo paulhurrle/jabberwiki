@@ -35,8 +35,9 @@ class ChargesController < ApplicationController
 
 	def downgrade 
 		flash[:notice] = "#{current_user.email}, you now have a standard account."
-		current_user.wikis.each do |w|
+		current_user.wikis.where(private: true).each do |w|
 			w.private = false
+			w.save
 		end
 		current_user.standard!
 		redirect_to :back
