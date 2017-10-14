@@ -1,15 +1,15 @@
 <div>
     <h1>
-        <%= @wiki.title %> <br>
-        <small>
-            submitted <%= time_ago_in_words(@wiki.created_at) %> ago by <%= @wiki.user ? @wiki.user.email : "Unknown user" %>
-        </small>
+        <%= to_markdown(@wiki.title) %>
     </h1>
+    <p>
+        submitted <%= time_ago_in_words(@wiki.created_at) %> ago by <%= @wiki.user ? @wiki.user.email : "Anonymous User" %>
+    </p>
 </div>
 
 <div class="row">
     <div class="col-md-8">
-        <p><%= @wiki.body %></p>
+        <p><%= to_markdown(@wiki.body) %></p>
     </div>
 </div>
 
