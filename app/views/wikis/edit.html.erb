@@ -9,7 +9,22 @@
             <li>The incessant use of hashtags will get you banned.</li>
         </ul>
     </div>
+
+
     <div class="col-md-8">
-        <%= render partial: 'form', locals: { wiki: @wiki } %>
+        <%= render partial: 'form', locals: { wiki: @wiki } %> <br />
+        <% if current_user == @wiki.user %>
+            <%= link_to "Add Collaborator", new_collaborator_path(@collaborator), class: 'btn btn-success' %> <br /><br />
+            <% if @wiki.collaborators.count > 0 %>
+                <h4>Wiki Collaborators:</h4>
+                <% @wiki.collaborators.all.each do |c| %>
+                    <div class="row">
+                        <ul><%= link_to "[Remove]", @collaborator, method: :delete, data: {confirm: 'Are you sure you want to remove this collaborator?'} %>
+                            <%= c.email %>
+                        </ul>
+                    </div>
+                <% end %>
+            <% end %>
+        <% end %>
     </div>
 </div>

@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   post '/downgrade' => 'charges#downgrade', as: :downgrade
 
+  resources :collaborators
+  # get '/collaborator' => 'collaborators#new', as: :collaborate
+
   devise_for :users
 
   root 'welcome#index'
