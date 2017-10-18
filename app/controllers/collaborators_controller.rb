@@ -1,19 +1,34 @@
 class CollaboratorsController < ApplicationController
 	def new
 		@collaborator = Collaborator.new
+		@wiki = Wiki.find(params[:wiki_id])
 	end
 
 	def create
-		@wiki = Wiki.find(params[:id])
-		@collaborator = Collaborator.new(user_id: @wiki.user, wiki_id: @wiki)
+		@wiki = Wiki.find(params[:wiki_id])
+		user = User.where(email: params[:collaborator][:email]).first
+		
+		# check if user is already a collaborator
+		if @wiki.users.include?(user)
+			flash[:alert] = "User is already a collaborator."
+		# check if user exists
+		elsif !User.all.include?(user)
+			flash[:alert] = "User not found."
+		# check if user is the wiki owner
+		elsif user == current_user
+			flash[:alert] = "Wiki owner cannot be a collaborator."
+		# Build collaborator object
+		else
+			@collaborator = Collaborator.new(user: user, wiki: @wiki)
 
-        if @collaborator.save
-            flash[:notice] = "Collaborator added."
-        else
-            flash[:alert] = "Collaborator not added."
-        end
+			if @collaborator.save
+            	flash[:notice] = "Collaborator added."
+        	else
+				flash[:alert] = "There was a problem adding this user as a collaborator. Please try again."
+			end
+		end
 
-        redirect_to :back
+        redirect_to new_wiki_collaborator_path(@wiki)
 	end
 
 	def edit
@@ -39,6 +54,7 @@ class CollaboratorsController < ApplicationController
 		else
 		  render :edit
 		end
+		redirect_to edit_wiki_path(@collaborator.wiki)
 	end
 
 	private

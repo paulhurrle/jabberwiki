@@ -18,6 +18,13 @@ class WikiPolicy < ApplicationPolicy
 						wikis << wiki
 					end
 				end
+			# elsif user && user.role == 'standard'
+			# 	all_wikis = scope.all
+			# 	all_wikis.each do |wiki|
+			# 		if !wiki.private? || wiki.user == user || wiki.collaborators.include?(user)
+			# 			wikis << wiki
+			# 		end
+			# 	end
 			else
 				all_wikis = scope.all
 				wikis = []

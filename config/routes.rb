@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  resources :wikis
+  resources :wikis do 
+    resources :collaborators
+  end
 
   resources :charges, only: [:new, :create]
 
   post '/downgrade' => 'charges#downgrade', as: :downgrade
 
-  resources :collaborators
   # get '/collaborator' => 'collaborators#new', as: :collaborate
 
   devise_for :users

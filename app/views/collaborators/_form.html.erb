@@ -1,4 +1,4 @@
-<%= form_for [@collaborator] do |f| %>
+<%= form_for [@wiki, @collaborator] do |f| %>
 
     <% if @collaborator.errors.any? %>
         <div class="alert alert-danger">
@@ -17,4 +17,5 @@
     <% end %>
     
     <%= f.submit "Save", class: 'btn btn-success' %>
+    <%= link_to "Cancel", edit_wiki_path(@wiki), class: 'btn btn-danger' %>
 <% end %>
