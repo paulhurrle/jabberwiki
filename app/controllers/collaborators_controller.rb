@@ -7,44 +7,42 @@ class CollaboratorsController < ApplicationController
 	def create
 		@wiki = Wiki.find(params[:wiki_id])
 		user = User.where(email: params[:collaborator][:email]).first
+		email = user.email
 		
 		# check if user is already a collaborator
 		if @wiki.users.include?(user)
 			flash[:alert] = "User is already a collaborator."
 		# check if user exists
-		elsif !User.all.include?(user)
+		elsif user.nil?
 			flash[:alert] = "User not found."
 		# check if user is the wiki owner
 		elsif user == current_user
 			flash[:alert] = "Wiki owner cannot be a collaborator."
 		# Build collaborator object
-		else
-			@collaborator = Collaborator.new(user: user, wiki: @wiki)
+		elsif Collaborator.create(user: user, wiki: @wiki, email: email)
+        	flash[:notice] = "Collaborator added."
+    	else
+			flash[:alert] = "There was a problem adding this user as a collaborator. Please try again."
 
-			if @collaborator.save
-            	flash[:notice] = "Collaborator added."
-        	else
-				flash[:alert] = "There was a problem adding this user as a collaborator. Please try again."
-			end
 		end
 
         redirect_to new_wiki_collaborator_path(@wiki)
 	end
 
-	def edit
-      @collaborator = Collaborate.find(params[:id])
-	end
+	# def edit
+ #      @collaborator = Collaborator.find(params[:id])
+	# end
 
-	def update
-	  @collaborator = Collaborator.find(params[:id])
+	# def update
+	#   @collaborator = Collaborator.find(params[:id])
 
-	  if @collaborator.update_attributes(collaborator_params)
-	      flash[:notice] = "Collaborator was saved."
-	      redirect_to [@wiki]
-	  else
-	      render :edit
-	  end
-	end
+	#   if @collaborator.update_attributes(collaborator_params)
+	#       flash[:notice] = "Collaborator was saved."
+	#       redirect_to [@wiki]
+	#   else
+	#       render :edit
+	#   end
+	# end
 
 	def destroy
 		@collaborator = Collaborator.find(params[:id])

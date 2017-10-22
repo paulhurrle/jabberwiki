@@ -14,3 +14,137 @@
  *= require_self
  */
 @import "bootstrap";
+
+body {
+    background: #673AB7;
+    font-family: 'Fresca', sans-serif;
+    color: #FFFFFF;
+}
+
+.logo {
+	height: 40px;
+	width: 36px;
+	background-color: #009688;
+	padding: 3px;
+}
+
+a {
+	color: #FFFFFF;	
+}
+
+a:focus, a:hover {
+	text-decoration: none;
+    color: #009688;
+}
+
+.welcome-image {
+	size: 48px;
+}
+
+.welcome-container {
+	width: 500px;
+    height: 90px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.welcome-title, .welcome-title h1 {
+    height: 90px;
+    margin: auto;
+    font-size: 4.5em;
+}
+
+.welcome-greeting {
+	width: 500px;
+}
+
+.sign-in {
+	width: 205px;
+    height: 40px;
+    text-align: center;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 45px;
+}
+
+.sign-in:hover, .sign-in:focus {
+	
+}
+
+.nav-tabs {
+    border-bottom: 1px solid #BDBDBD;
+    background-color: #512DA8;
+}
+
+.nav-links {
+	margin: 0 10px 0 10px;
+    line-height: 40px;
+}
+
+.navbar-link {
+	color: #009688;
+}
+
+.user-status {
+	text-align: right;
+    width: 85%;
+    line-height: 40px;
+}
+
+li {
+	margin-right: 8px;
+}
+
+.btn-success, .btn-success:hover {
+	background: #009688;
+}
+
+.btn-warning, .btn-warning:hover {
+	background: #FF9800;
+}
+
+.welcome-logo {
+	margin-top: 15px;
+	height: 200px;
+	width: 180px;
+}
+
+.welcome-logo-container {
+	width: 180px;
+	margin: auto;
+}
+
+.media {
+	max-width: 60%;
+	border-bottom: 2px solid #BDBDBD;   
+	padding: 10px;
+}
+
+.row {
+	display: block;
+	margin: 0 1% 0 1%;
+}
+
+.title {
+	margin: 5px 1% 0 1%;	
+}
+
+label, .submitted, h6 {
+	color: #D1C4E9;
+	list-style: none;
+}
+
+.field {
+	margin-bottom: 15px;
+}
+
+.del-collab{
+	color: #FF9800;
+}
+
+.wiki-show-body {
+	font-size: 2em;
+}

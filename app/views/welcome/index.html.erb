@@ -1,2 +1,16 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<div class="welcome-container">
+	<h1 class="welcome-title">Jabberwiki</h1>
+	<h3 class="welcome-greeting">Create or contribute to a wiki today!</h3>
+</div>
+
+<div class="sign-in">
+	<% if !user_signed_in? %>
+		<h3>	<%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> or 
+			<%= link_to "Sign in", new_user_session_path, :class => 'navbar-link'  %>
+		</h3>
+	<% end %>
+</div>
+
+<div class="welcome-logo-container">
+	<%= image_tag "happy-man.png", class: "welcome-logo" %>
+</div>
