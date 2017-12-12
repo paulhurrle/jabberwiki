@@ -1,4 +1,4 @@
-<img width="600px" src="app/assets/images/jabberwiki_home.png" alt='Jabberwiki'>
+<img src="app/assets/images/jabberwiki_home.png" alt='Jabberwiki'>
 
 ## Explanation
 
@@ -33,9 +33,9 @@ Setting up the CRUD actions associated with new and existing wikis required the 
 title, body, and private (which defaults to false). Since wikis belong to users, the appropriate relationship was specified in the wikis
 model using a `user:references` attribute. Finally, a corresponding Wikis Controller was added with methods for handling each CRUD action.
 
-<img max-width="65%" src="app/assets/images/jabberwiki_wiki_model.png" alt='Wiki Model'>
+<img width="600px" src="app/assets/images/jabberwiki_wiki_model.png" alt='Wiki Model'>
 
-<img max-width="50%" src="app/assets/images/jabberwiki_wiki_controller.png" alt='Wikis Controller'>
+<img width="475px" src="app/assets/images/jabberwiki_wiki_controller.png" alt='Wikis Controller'>
 
 The Pundit gem was installed to allow user authorization into one of three roles: standard (default), premium (paid upgrade), and admin.
 Since users must be authorized prior to editing a public wiki, a method was added to `application_policy.rb` to check whether a user is
